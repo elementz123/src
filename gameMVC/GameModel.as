@@ -33,6 +33,7 @@ package gameMVC
 		public var level1:Level1;
 		public var level2:Level2;
 		public var level3:Level3;
+		public var level4:Level4;
 		public var started:Boolean = false;
 		//time vars
 		public var startDate:Date;

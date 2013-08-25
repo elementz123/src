@@ -6,6 +6,7 @@ package gameMVC
 	import flash.ui.Keyboard;
 	import flash.events.MouseEvent;
 	import flash.utils.Timer;
+	import sound.SoundEffects;
 	import util.PixelPerfectCollisionDetection;
 	import visual.*;
 	
@@ -33,6 +34,7 @@ package gameMVC
 			gameModel.winArea = new WinArea();
 			gameModel.screen.addChild(gameModel.playScreenBack);
 			gameModel.screen.addChild(gameModel.winArea);
+			SoundEffects.volumeAdjust.volume = .4;
 			initLevel1();
 		}
 		
@@ -43,6 +45,8 @@ package gameMVC
 			gameModel.totalMiliseconds = gameModel.milisecondsLeft;
 			_stage.addEventListener(Event.ENTER_FRAME, onEntFrame);
 			gameModel.howToStart.visible = false;
+			SoundEffects.startChannel = SoundEffects.start.play();
+			SoundEffects.startChannel.soundTransform = SoundEffects.volumeAdjust;
 		}
 		
 		private function initLevel1():void
@@ -56,12 +60,12 @@ package gameMVC
 			gameModel.levelCounter = 1;
 			gameModel.levelSelect = gameModel.level1;
 			
-			gameModel.winArea.x = 120;
+			gameModel.winArea.x = 420;
 			gameModel.winArea.y = 120;
 			
 			gameModel.ball = new Ball();
-			gameModel.ball.x = 100;
-			gameModel.ball.y = 400;
+			gameModel.ball.x = 180;
+			gameModel.ball.y = 120;
 			
 			gameModel.screen.addChild(gameModel.ball);
 			gameModel.screen.addChild(gameModel.level1);
@@ -74,12 +78,12 @@ package gameMVC
 			gameModel.level2 = new Level2();
 			gameModel.levelSelect = gameModel.level2;
 			
-			gameModel.ball.x = 540;
-			gameModel.ball.y = 230;
+			gameModel.ball.x = 100;
+			gameModel.ball.y = 400;
 			gameModel.resetBallPos();
 			
-			gameModel.winArea.x = 55;
-			gameModel.winArea.y = 370;
+			gameModel.winArea.x = 120;
+			gameModel.winArea.y = 120;
 			
 			gameModel.screen.addChild(gameModel.level2);
 			gameModel.screen.addChild(gameModel.timeDisplay);
@@ -91,6 +95,23 @@ package gameMVC
 			gameModel.level3 = new Level3();
 			gameModel.levelSelect = gameModel.level3;
 			
+			gameModel.ball.x = 540;
+			gameModel.ball.y = 230;
+			gameModel.resetBallPos();
+			
+			gameModel.winArea.x = 55;
+			gameModel.winArea.y = 370;
+			
+			gameModel.screen.addChild(gameModel.level3);
+			gameModel.screen.addChild(gameModel.timeDisplay);
+			gameModel.screen.addChild(gameModel.howToStart);
+		}
+		
+		private function initLevel4():void
+		{
+			gameModel.level4 = new Level4();
+			gameModel.levelSelect = gameModel.level4;
+			
 			gameModel.ball.x = 200;
 			gameModel.ball.y = 100;
 			gameModel.resetBallPos();
@@ -98,7 +119,7 @@ package gameMVC
 			gameModel.winArea.x = 70;
 			gameModel.winArea.y = 240;
 			
-			gameModel.screen.addChild(gameModel.level3);
+			gameModel.screen.addChild(gameModel.level4);
 			gameModel.screen.addChild(gameModel.timeDisplay);
 			gameModel.screen.addChild(gameModel.howToStart);
 		}
@@ -112,7 +133,8 @@ package gameMVC
 			
 			if (gameModel.milisecondsLeft < 1)
 			{
-				trace("out of time");
+				SoundEffects.timeoutChannel = SoundEffects.timeOut.play();
+				SoundEffects.timeoutChannel.soundTransform = SoundEffects.volumeAdjust;
 				endGame();
 			}
 		}
@@ -120,11 +142,12 @@ package gameMVC
 		private function checkCollisions():void
 		{
 			if (PixelPerfectCollisionDetection.isColliding(gameModel.ball,
-				gameModel.winArea, gameModel.screen, false))
+				gameModel.winArea, gameModel.screen, true))
 			{
-				trace("win");
 				_stage.removeEventListener(Event.ENTER_FRAME, onEntFrame);
-				if (gameModel.levelCounter == 3)
+				SoundEffects.levelWarpChannel = SoundEffects.levelWarp.play();
+				SoundEffects.levelWarpChannel.soundTransform = SoundEffects.volumeAdjust;
+				if (gameModel.levelCounter == 4)
 				{
 					winGame();
 				}
@@ -133,8 +156,9 @@ package gameMVC
 			if (PixelPerfectCollisionDetection.isColliding(gameModel.ball,
 				gameModel.levelSelect, gameModel.screen, true))
 			{
-				trace("hit");
 				endGame();
+				SoundEffects.dieChannel = SoundEffects.die.play();
+				SoundEffects.dieChannel.soundTransform = SoundEffects.volumeAdjust;
 			}
 		}
 		
@@ -162,6 +186,13 @@ package gameMVC
 				gameModel.screen.removeChild(gameModel.level2);
 				gameModel.level2 = null;
 				initLevel3();
+			}
+			
+			if (gameModel.levelCounter == 4)
+			{
+				gameModel.screen.removeChild(gameModel.level3);
+				gameModel.level3 = null;
+				initLevel4();
 			}
 		}
 		

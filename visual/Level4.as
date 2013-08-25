@@ -1,4 +1,4 @@
-package visual
+package visual 
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -6,19 +6,17 @@ package visual
 	/**
 	 * ...
 	 * @author elementz123
-	
+
 	 */
-	public class Level2 extends Sprite
+	public class Level4 extends Sprite 
 	{
-		[Embed(source="../../assets/images/Level1.png")]
+		[Embed(source="../../assets/images/Level2.png")]
 		private var Back:Class;
 		public var back:DisplayObject = new Back();
 		
-		public function Level2()
+		public function Level4() 
 		{
 			addChild(back);
-		}
+		}		
 	}
 }
-
-

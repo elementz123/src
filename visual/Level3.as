@@ -10,7 +10,7 @@ package visual
 	 */
 	public class Level3 extends Sprite
 	{
-		[Embed(source="../../assets/images/Level2.png")]
+		[Embed(source="../../assets/images/Level2actual.png")]
 		private var Back:Class;
 		public var back:DisplayObject = new Back();
 		
