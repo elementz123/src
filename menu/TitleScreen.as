@@ -14,7 +14,7 @@ package menu
 	public class TitleScreen extends Sprite
 	{
 		//embed background title image here
-		[Embed(source="../../assets/images/gravityBackground.jpg")]
+		[Embed(source="../../assets/images/MenuScreenLudumDare27.jpg")]
 		private var TitlePic:Class;
 		private var playBtn:PlayButton = new PlayButton();
 		
@@ -22,6 +22,7 @@ package menu
 		{
 			var titlePic:DisplayObject = new TitlePic();
 			addChild(titlePic);
+			playBtn.y = 20;
 			addChild(playBtn);
 			
 			playBtn.addEventListener(MouseEvent.CLICK, onPlayClick);

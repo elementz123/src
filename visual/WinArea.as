@@ -12,7 +12,7 @@ package visual
 		public function WinArea(width:int = 40,height:int = 40) 
 		{
 			graphics.lineStyle(0);
-			graphics.beginFill(0x4227a2, 1);
+			graphics.beginFill(0x4227f2, 1);
 			graphics.drawRect(0, 0, width, height);
 			graphics.endFill();
 		}		

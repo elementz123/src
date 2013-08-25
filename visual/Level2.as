@@ -10,20 +10,15 @@ package visual
 	 */
 	public class Level2 extends Sprite
 	{
-		[Embed(source="../../assets/images/Level2.png")]
+		[Embed(source="../../assets/images/Level2actual.png")]
 		private var Back:Class;
 		public var back:DisplayObject = new Back();
 		
-		public var winArea:WinArea;
-		
 		public function Level2()
 		{
-			winArea = new WinArea(50, 50);
-			winArea.x = 100;
-			winArea.y = 300;
-			
-			addChild(winArea);
 			addChild(back);
 		}
 	}
 }
+
+

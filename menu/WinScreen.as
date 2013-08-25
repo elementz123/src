@@ -1,49 +1,47 @@
 package menu
 {
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
-	import gameMVC.GameModel;
 	
 	/**
 	 * ...
 	 * @author elementz123
 	
 	 */
-	public class GameOverScreen extends Sprite
+	public class WinScreen extends Sprite
 	{
-		private var gameOverText:TextField;
+		private var winText:TextField;
 		private var tFormat:TextFormat;
 		private var playBtn:RestartButton = new RestartButton();
 		
-		public function GameOverScreen()
+		public function WinScreen() 
 		{
 			tFormat = new TextFormat();
 			tFormat.bold = true;
 			tFormat.size = 50;
 			tFormat.color = 0xeeeeee;
-			tFormat.align = TextFormatAlign.LEFT;
+			tFormat.align = TextFormatAlign.CENTER;
 			
-			gameOverText = new TextField();
-			gameOverText.autoSize = TextFieldAutoSize.CENTER;
-			gameOverText.text = "GAME OVER";
-			gameOverText.setTextFormat(tFormat);
-			gameOverText.x = 150;
-			gameOverText.y = 200;
-			addChild(gameOverText);
+			winText = new TextField();
+			winText.autoSize = TextFieldAutoSize.CENTER;
+			winText.text = "You Win! \n Thanks for playing!";
+			winText.setTextFormat(tFormat);
+			winText.x = 110;
+			winText.y = 140;
+			addChild(winText);
 			playBtn.y = 50;
 			addChild(playBtn);
 			
 			playBtn.addEventListener(MouseEvent.CLICK, onMenuClick);
-		}
+		}		
 		
-		private function onMenuClick(e:Event):void
+		private function onMenuClick(e:MouseEvent):void 
 		{
-			Main.mainInstance.processMenuFromGameOver();
+			Main.mainInstance.processMenuFromWin();
 		}
 	}
 }

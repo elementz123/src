@@ -25,6 +25,7 @@ package
 		private var gameView:GameView;
 		private var _titleScreen:TitleScreen;
 		private var _gameOverScreen:GameOverScreen;
+		private var _winScreen:WinScreen;
 		
 		public function Main():void
 		{
@@ -46,7 +47,7 @@ package
 		public function processPlay():void
 		{
 			stage.focus = gameView;
-			Mouse.hide();
+			//Mouse.hide();
 			gameModel = new GameModel();
 			gameController = new GameController(gameModel, stage);
 			gameView = new GameView(gameModel, gameController, stage);
@@ -68,7 +69,7 @@ package
 			gameView = null;
 		}
 		
-		public function processMenu():void
+		public function processMenuFromGameOver():void
 		{
 			Mouse.show();
 			_titleScreen = new TitleScreen();
@@ -76,6 +77,28 @@ package
 			
 			removeChild(_gameOverScreen);
 			_gameOverScreen = null;
+		}
+		
+		public function processWinGame():void
+		{
+			Mouse.show();
+			_winScreen = new WinScreen();
+			addChild(_winScreen);
+			
+			removeChild(gameView);
+			gameModel = null;
+			gameController = null;
+			gameView = null;
+		}
+		
+		public function processMenuFromWin():void
+		{
+			Mouse.show();
+			_titleScreen = new TitleScreen();
+			addChild(_titleScreen);
+			
+			removeChild(_winScreen);
+			_winScreen = null;
 		}
 		
 		static public function get mainInstance():Object

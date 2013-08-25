@@ -10,15 +10,15 @@ package menu
 	 * @author elementz123
 	
 	 */
-	public class PlayButton extends Sprite
+	public class RestartButton extends Sprite
 	{
 		//embed play button image here
-		[Embed(source="../../assets/images/Button2.jpg")]
+		[Embed(source="../../assets/images/Button2restart.jpg")]
 		private var PlayImg:Class;
 		private var outerBoxHover:Shape;
 		private var outerBox:Shape;
 		
-		public function PlayButton()
+		public function RestartButton() 
 		{
 			var playBtn:DisplayObject = new PlayImg();
 			playBtn.x = 245;

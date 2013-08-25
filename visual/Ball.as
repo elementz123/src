@@ -14,7 +14,7 @@ package visual
 		{
 			graphics.lineStyle(1);
 			graphics.beginFill(0xffaa22);
-			graphics.drawCircle(0, 0, 15);
+			graphics.drawCircle(0, 0, 8);
 			graphics.endFill();
 		}
 	}

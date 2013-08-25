@@ -14,15 +14,8 @@ package visual
 		private var Back:Class;
 		public var back:DisplayObject = new Back();
 		
-		public var winArea:WinArea;
-		
 		public function Level1() 
 		{
-			winArea = new WinArea(115, 115);
-			winArea.x = 90;
-			winArea.y = 90;
-			
-			addChild(winArea);
 			addChild(back);
 		}		
 	}
